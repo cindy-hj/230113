@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화살표갤러리1</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        ul, li {
+            list-style: none;
+        }
+        #maskWrap{
+            width: 800px;
+            height: 600px;
+            /* 넘치는값 잘림 */
+            /* overflow: hidden; */
+            border: 10px salmon;
+            margin: 0 auto;
+            /* outBox가 움직이므로 position 필수 */
+            position: relative;
+        }
+        #outBox{
+            width: 4000px;
+            /* => 가로 inBox의 크기값*개수 */
+            height: 600px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .inBox{
+            width: 800px;
+            height: 600px;
+            text-align: center;
+            font-size: 100px;
+            line-height: 600px;
+            /* 가로 움직임 */
+            float: left;
+        }
+        .button{
+            width: 100px;
+            height: 100px;
+            background: white;
+            text-align: center;
+            line-height: 100px;
+            font-size: 100px;
+            position: absolute;
+            top: 50%;
+            margin-top: -50px;
+        }
+        #leftButton{
+            left:0;
+        }
+        #rightButton{
+            right:0;
+        }
+    </style>
+
+    <script src="jquery-3.6.3.js" ></script>
+    <script src="jquery-ui.js" ></script>
+    <script>
+        $(document).ready(function(){
+            // 1. 위치 선택자
+            // first()=>첫번째
+            // $(".inBox").first().css({
+            //     color:"red"
+            // });
+            // last()=>마지막
+            // $(".inBox").last().css({
+            //     color:"red"
+            // });
+            // eq()=>동일한 index값 찾음
+            // $(".inBox").eq(1).css({
+            //     color:"blue"
+            // });
+
+            // 2. 객체 이동
+            // a prependTo b 이동
+            // => a를 선택 b영역 안에서 앞으로 이동
+            // $(".inBox").last().prependTo("#outBox");
+            // a appendTo b 이동
+            // => a를 선택 b 영역 안에서 뒤로 이동
+            // $(".inBox").first().appendTo("#outBox");
+        
+            // 1. 배열 활용
+            // 배경색 지절
+            // 함수의 리턴값
+            let bgColor=["yellow","green","pink","salmon","gray"]
+            $(".inBox").css({
+                background:function(index){
+                    return bgColor[index]
+                }
+            });
+
+            // let cnt = 0;
+            // leftButton을 클릭할때마다
+            // 1. outBox가 -800값만큼 왼쪽으로 이동
+            $("#leftButton").click(function(){
+                // cnt++;
+                // if(cnt > 4){
+                //     cnt = 4;
+                // }
+                // $("#outBox").animate({
+                //     left: -800*cnt
+                // },1000);
+
+                // 무한반복
+                // =>outBox를 -800 이동 한 후 
+                // =>이동한 첫번째 박스를 선택 outBox 뒤로 보냄
+                // =>첫번째 박스가 이동하면서 생긴 공백으로 다시 outBox를 0,0 지점으로 이동시킴
+                // $(선택자).animate({이동 속성값}, 시간값, 속도값, 콜백함수);
+                // 콜백함수 => 이동 속성값으로 기존 animate가 끝난 후 추가 실행문
+                $("#outBox").animate({
+                    left: -800
+                },1000,function(){
+                    $(".inBox").first().appendTo("#outBox");
+                    $("#outBox").css({
+                        left:0
+                    })
+                });
+            });
+
+            // rightButton을 클릭할때마다
+            // 2. outBox가 leftButton을 클릭했을때 이동의 반대로 움직임
+            // leftButton을 클릭한 이후 클릭
+            // leftButton로 증가한 cnt의 값을 감소시켜 반대방향
+            $("#rightButton").click(function(){
+                // cnt--;
+                // if(cnt <= 0){
+                //     cnt = 0;
+                // }
+                // $("#outBox").animate({
+                //     left: -800*cnt
+                // },1000);
+                $(".inBox").last().prependTo("#outBox");
+                $("#outBox").css({
+                    // 큰 박스는 왼쪽으로 이동해야함. 이걸 주석 처리하면 제일 뒤에서 제일 앞으로 이동한 작은 박스가 바로 보이는 자리로 이동함
+                    // 이걸 방지 하기 위해 왼쪽에 작은 박스 하나가 들어가는 공간을 만들 필요가 있다. 그래서 왼쪽으로 800만큼 이동시키는것
+                    // 클릭 할때마다 왼쪽으로 갈 필요는 없고 위치가 left: -800으로 고정되면 제일 뒤에 있던 작은 박스가 하나씩 오니까 그것만 담아 두는 모양이 됨
+                    // 
+                    left:-800
+                }).animate({
+                    // outBox를 제일 왼쪽으로 이동시켜야 제일 뒤에서 제일 앞으로 온 작은 박스가 보이게 됨
+                    left: 0
+                },1000,function(){ 
+                });
+            });
+
+            // left는 움직이는게 먼저. 앞에있는걸 뒤로 보내는게 나중
+            // right는 뒤에 있는걸 앞으로 보내는게 먼저. 그리고 움직임
+        });
+    </script>
+</head>
+<body>
+    <!-- outBox의 크기를 자르는 영역, inBox의 크기와 동일 -->
+    <div id="maskWrap">
+        <!-- 실제 움직이는 영역, 
+        0,0 왼쪽 상단 기준으로 inBox의 크기값 만큼씩 이동,
+        inBox의 크기값은 세로 가로 움직임에 따라 크기 설정 -->
+        <ul id="outBox">
+            <!-- 자동 배열처리 => index값 사용 가능 -->
+            <li class="inBox">1</li>
+            <li class="inBox">2</li>
+            <li class="inBox">3</li>
+            <li class="inBox">4</li>
+            <li class="inBox">5</li>
+        </ul>
+        <h1 class="button" id="leftButton">◀</h1>
+        <h1 class="button" id="rightButton">▶</h1>
+    </div>
+</body>
+</html>

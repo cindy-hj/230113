@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>스크롤</title>
+    <link href="scroll.css" rel="stylesheet" type="text/css">
+    <script src="jquery-3.6.3.js" ></script>
+    <script src="jquery-ui.js" ></script>
+    <script src="scroll.js"></script>
+    <script>
+        
+
+    </script>
+</head>
+<body>
+    <div id="wrap">
+        <div id="top">
+            <ul id="mainMenu">
+                <li class="menu" id="menu1">메뉴1</li>
+                <li class="menu" id="menu2">메뉴2</li>
+                <li class="menu" id="menu3">메뉴3</li>
+                <li class="menu" id="menu4">메뉴4</li>
+                <li class="menu" id="menu5">메뉴5</li>
+            </ul>
+        </div>
+        <div class="page">
+            <div class="box">1</div>
+        </div>
+        <div class="page">
+            <div class="box">2</div>
+        </div>
+        <div class="page">
+            <div class="box">3</div>
+        </div>
+        <div class="page">
+            <div class="box">4</div>
+        </div>
+        <div class="page">
+            <div class="box">5</div>
+        </div>
+        <h1 id="quick"><img src="img/down.png" style="width: 100px; height: 100px;"></h1>
+
+        
+    </div>
+<!-- 
+    1. body 구조
+    => page 5개
+    => 각 page 안에 내용 박스
+    => 메인 메뉴
+    => 퀵메뉴
+
+    2. page구조
+    => 각 page 안에 내용 박스는 가로 세로 중앙정렬
+
+    3. 메인메뉴
+    => 5개의 메인메뉴
+    => 각 버튼을 클릭하면 각 페이지로 이동
+
+    4. 퀵메뉴 
+    => 버튼을 클릭할때마다 각 페이지로 이동
+    => 가장 마지막 페이지에서 제일 위로 이동
+    => 가장 마지막 페이지에서 화살표 방향이 바뀜(이미지 교체함)
+
+    5. 메인메뉴, 퀵메뉴 항상 보이는 고정메뉴 -->
+</body>
+</html>

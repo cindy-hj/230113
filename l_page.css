@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+#wrap{
+    background: navy;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.page{
+    position: relative;
+    border: 10px solid black;
+    box-sizing: border-box;
+}
+.button{
+    width: 100px;
+    height: 100px;
+    background: black;
+    text-align: center;
+    line-height: 100px;
+    font-size: 90px;
+    font-weight: 900;
+    position: absolute;
+    color: white;
+}
+#width_page_wrap{
+    position: relative;
+}
+#width_page_wrap>.page{
+    float: left;
+}
+/* button 영역 */
+/* 가로 중앙 button */
+#page_2_go, #page_1_top, #page_3_go, #page_2_top{
+    left: 50%;
+    margin-left: -50px;
+}
+/* 세로 중앙 button */
+#page_4_go,#page_3_left,#page_5_go,#page_4_left,#page_main{
+    top: 50%;
+    margin-top: -50px;
+}
+/* top:0 위치 */
+#page_1_top,#page_2_top{
+    top:0
+}
+/* bottom:0 위치 */
+#page_2_go, #page_3_go{
+    bottom:0
+}
+/* left:0 위치 */
+#page_3_left,#page_4_left{
+    left:0
+}
+/* right:0 위치 */
+#page_4_go,#page_5_go,#page_main{
+    right: 0;
+}
