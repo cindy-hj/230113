@@ -14,12 +14,12 @@ ul, li{
     height: 100px;
     background-color: beige;
     position: fixed;
-    /* z-index값이 크면 레이어 상으로 위로 올라온다.
-    레이어가 많아지면 힘듬... 그럴때는 body에서 병렬구조인 레이어들은 나중에 위치한 레이어가 위로 올라오게됨
-    이걸 이용해서 body상에서 제일 마지막에 위치 시켜주고 position에서 top 0 left 0 으로 주면 됨 */
+    /* z-index값이 크면 레이어들 중 위로 올라온다.
+    레이어가 많아지면 999로 안올라 올수도... 예측 불가
+    그럴때는 body에서 병렬구조인 레이어들은 나중에 위치한 레이어가 위로 올라오는걸 이용
+    body상에서 제일 마지막에 위치 시켜주고 position에서 top 0 left 0 으로 주면 됨 */
     z-index: 999;
 }
-
 #mainMenu{
     width: 500px;
     position: absolute;
@@ -37,6 +37,7 @@ ul, li{
     line-height: 100px;
 }
 .page{
+    /* 정확히 알수 없는값(ex:윈도우 크기)은 js에서 css 작업 */
     background: navy;
     position: relative;
 }
